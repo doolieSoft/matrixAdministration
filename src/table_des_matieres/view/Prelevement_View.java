@@ -52,7 +52,7 @@ public class Prelevement_View extends javax.swing.JDialog {
         typeDialog=td;
         switch(typeDialog) {
             case AJOUT:
-                    jPanel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), bundle.getString("AJOUTER UN PÉLÈVEMENT")));
+                    jPanel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), bundle.getString("AJOUTER UN PRÉLÈVEMENT")));
                 break;
             case MODIF:
                     jPanel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), bundle.getString("MODIFIER LE PRÉLÈVEMENT")));
