@@ -31,9 +31,9 @@ public class Main {
             // ignore it
         }
 
-        TableDesMatieres_View app;
+        Matrix_View app;
 
-        app = new TableDesMatieres_View();
+        app = new Matrix_View();
         app.setVisible(true);
     }
 }
