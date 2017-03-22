@@ -11,10 +11,17 @@ public class NewAgent extends JDialog {
     private JTextField textFieldLogin;
 
     public NewAgent() {
+    	contentPane = new JPanel();
+    	buttonSave = new JButton("Save");
+    	buttonCancel = new JButton("Cancel");
+    	textFieldLogin = new JTextField();
+    	contentPane.add(textFieldLogin);
+    	contentPane.add(buttonSave);
+    	contentPane.add(buttonCancel);
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSave);
-
+        
         buttonSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onSave();

@@ -13,7 +13,7 @@ public class StatusColumnTotalRenderer extends DefaultTableCellRenderer {
         JLabel l = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
 
         //Get the status for the current row.
-        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        //DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         if (value != null && value.equals("100")) {
             l.setBackground(Color.GREEN);
             l.setFont(l.getFont().deriveFont(Font.BOLD));
