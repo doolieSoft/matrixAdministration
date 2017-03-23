@@ -321,7 +321,6 @@ public class Main extends JFrame {
         scrollPane.setViewportView(tableRatios);
         mainPanel.setLayout(gl_mainPanel);
         getContentPane().setLayout(group);
-        
         try {
             db = new DatabaseHelper();
         } catch (Exception e) {
