@@ -33,6 +33,7 @@ public class Main extends JFrame {
     JTextField txtRatio = new JTextField();
     private final JScrollPane scrollPane = new JScrollPane();
 
+
     public Main() {
         super("Matrix Administration");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
