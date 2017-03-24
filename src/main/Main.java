@@ -5,20 +5,15 @@ import DAO.DatabaseHelper;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
 
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.TitledBorder;
 
 
 public class Main extends JFrame {

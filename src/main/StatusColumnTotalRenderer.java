@@ -2,7 +2,6 @@ package main;/* See the file "LICENSE" for the full license governing this code.
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class StatusColumnTotalRenderer extends DefaultTableCellRenderer {

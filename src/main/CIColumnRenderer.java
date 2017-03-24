@@ -5,7 +5,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 public class CIColumnRenderer extends DefaultTableCellRenderer {
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7076834246211611154L;
+
+	@Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
 
         //Cells are by default rendered as a JLabel.
