@@ -382,10 +382,8 @@ public class Main extends JFrame {
 
         dm.addColumn("CI");
         tableRatios.getColumn("CI").setCellRenderer(new CIColumnRenderer());
-        LinkedList<String> agentTotals = new LinkedList<>();
         for (String agent : agentsList) {
             dm.addColumn(agent);
-            agentTotals.add(String.valueOf(db.getSumAgent(agent)));
         }
         dm.addColumn("Total");
         tableRatios.getColumn("Total").setCellRenderer(
@@ -402,8 +400,6 @@ public class Main extends JFrame {
             row.addLast(String.valueOf(sumCi));
             dm.addRow(row.toArray());
         }
-        agentTotals.addFirst("Total");
-        dm.addRow(agentTotals.toArray());
     }
 
     private int sumCiRatios(Iterable<Integer> ratios) {
