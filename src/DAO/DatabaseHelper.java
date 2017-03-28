@@ -22,8 +22,9 @@ public class DatabaseHelper {
 			createDatabase();
 	}
 
-	public static Connection getConnection() throws SQLException, ClassNotFoundException {
-	    Class.forName("org.sqlite.JDBC");
+	public static Connection getConnection() throws SQLException,
+			ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
 		if (connection == null)
 			connection = DriverManager.getConnection(CONNECTION_STRING);
 		return connection;
@@ -37,12 +38,14 @@ public class DatabaseHelper {
 							+ RATIO_FIELD
 							+ " INTEGER, UNIQUE(I_AGENT_ID, I_CI_ID))");
 			statement
-					.executeUpdate("CREATE TABLE AGENT_T (I_ID INTEGER PRIMARY KEY, ST_AGENT TEXT UNIQUE)");
+					.executeUpdate("CREATE TABLE AGENT_T (I_ID INTEGER PRIMARY KEY, ST_AGENT TEXT UNIQUE, I_PRESENT INTEGER DEFAULT (1))");
 			statement
 					.executeUpdate("CREATE TABLE CI_T (I_ID INTEGER PRIMARY KEY, ST_CI TEXT UNIQUE)");
+			statement
+					.executeUpdate("CREATE TABLE EVENTLOG_T (I_ID INTEGER PRIMARY KEY, ST_DESCRIPTION TEXT NOT NULL, I_AGENT_ID INTEGER, ST_DATE_EVENT TEXT NOT NULL)");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.exit(0);
+
 		}
 	}
 
@@ -131,8 +134,8 @@ public class DatabaseHelper {
 		ResultSet rs = null;
 		try {
 			statement = getStatement();
-			rs = statement.executeQuery("SELECT ST_CI FROM "
-					+ CI_TABLE + " ORDER BY " + CI_FIELD);
+			rs = statement.executeQuery("SELECT ST_CI FROM " + CI_TABLE
+					+ " ORDER BY " + CI_FIELD);
 			while (rs.next()) {
 				result.add(rs.getString(CI_FIELD));
 			}
@@ -315,13 +318,14 @@ public class DatabaseHelper {
 					+ " AND c." + CI_FIELD + "='" + ci + "' " + " ORDER BY "
 					+ AGENT_FIELD);
 			while (rs.next()) {
-				result.put(rs.getString(AGENT_FIELD), Integer.valueOf(rs.getInt(RATIO_FIELD)));
+				result.put(rs.getString(AGENT_FIELD),
+						Integer.valueOf(rs.getInt(RATIO_FIELD)));
 			}
 			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		  return result;
+		return result;
 	}
 
 	public int getSumAgent(String agent) {
@@ -340,8 +344,8 @@ public class DatabaseHelper {
 			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
-			return sum;
+		}
+		return sum;
 	}
 
 	public int getSumCiRatios(String ci) {
@@ -370,6 +374,36 @@ public class DatabaseHelper {
 			} catch (Exception e) {
 			}
 			return sum;
+		}
+	}
+
+	public List<EventLine> getLogContent() {
+		List<EventLine> result = new ArrayList<>();
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = getStatement();
+			resultSet = statement
+					.executeQuery("SELECT ST_DATE_EVENT, ST_DESCRIPTION "
+							+ " FROM EVENTLOG_T ORDER BY I_ID DESC");
+			while (resultSet.next()) {
+				result.add(new EventLine(resultSet.getString("ST_DATE_EVENT"),
+						resultSet.getString("ST_DESCRIPTION")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} catch (Exception e) {
+			}
+			try {
+				connection.close();
+
+			} catch (Exception e) {
+			}
+			return result;
 		}
 	}
 }
